@@ -158,6 +158,12 @@ class EmployeeController extends Controller
 
         // image upload 
         if ($request->hasFile('photo')) {  
+
+            // delete old image file 
+            if (File::exists($employee->photo)) {     
+                File::delete($employee->photo);  
+            }
+
             $image = $request->file('photo');  
             $imgName = str_slug($request->name).'-'.time().'.'.$image->getClientOriginalExtension();    
             $localtion = public_path('images/employee/'.$imgName);     
@@ -174,11 +180,6 @@ class EmployeeController extends Controller
 
         if ($employee->save()) {  
             
-            // delete image file 
-            if (File::exists($employee->photo)) {  
-                File::delete($employee->photo);   
-            } 
-
             $notification = array(
                 'message' => 'Employee Updated Successfully',
                 'alert-type' => 'success' 
@@ -201,14 +202,18 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
 
-        // delete image file 
-        if (File::exists($employee->photo)) { 
-            File::delete($employee->photo);   
-        } 
+        if (!is_null($employee)) {
+            
+            // delete image file 
+            if (File::exists($employee->photo)) { 
+                File::delete($employee->photo);    
+            } 
+            
+            $employee->delete();
+        }
 
-        $delete = $employee->delete();
 
-        if ($delete) {
+        if ( $employee->delete() ) { 
             
               $notification = array(
                 'message' => 'Employee Deleted Successfully',
