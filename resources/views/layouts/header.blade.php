@@ -28,6 +28,9 @@
         <!-- Custom Files -->
         <link href="{{ asset('public/css/helper.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('public/css/style.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="{{ asset('public/css/toastr.min.css') }}">  
+        <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">   
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

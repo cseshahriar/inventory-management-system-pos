@@ -30,7 +30,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © Moltran.
+                   {{  date('Y') }} © Codershahriar.com 
                 </footer>
 
             </div>   

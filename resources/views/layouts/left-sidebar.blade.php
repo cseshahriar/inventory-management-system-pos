@@ -26,12 +26,11 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-mail"></i><span> Mail </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="fas fa-users"></i><span> Employees </span><span class="pull-right"><i class="md md-add"></i></span></a> 
                                 <ul class="list-unstyled">
-                                    <li><a href="inbox.html">Inbox</a></li>
-                                    <li><a href="email-compose.html">Compose Mail</a></li>
-                                    <li><a href="email-read.html">View Mail</a></li>
-                                </ul>
+                                    <li><a href="{{ route('employee.create') }}">Add Employee</a></li>
+                                    <li><a href="{{ route('employee.index') }}">All Employee</a></li>
+                                </ul> 
                             </li>
 
                             <li>

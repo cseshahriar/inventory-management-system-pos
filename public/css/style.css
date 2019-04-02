@@ -3359,3 +3359,9 @@ div.dataTables_info {
     width: 1170px;
   }
 }
+
+
+/* custom styles */
+.datatable-editable  .fa-trash-o, .fa-trash{
+    color: #ef5350; 
+} 
