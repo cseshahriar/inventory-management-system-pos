@@ -8,8 +8,8 @@
 	        <div class="col-sm-12">
 	            <h4 class="pull-left page-title">Welcome !</h4>
 	            <ol class="breadcrumb pull-right">
-	                <li><a href="{{ route('employee.index') }}">Employee</a></li>
-	                <li class="active">Edit</li>
+	                <li><a href="{{ route('employee.index') }}">Employee Information</a></li>
+	                <li class="active">Update</li>
 	            </ol>
 	        </div>
 	    </div>
@@ -19,7 +19,7 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Employee Edit</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">Employee Information Update</h3></div>  
 
 
                     <div class="panel-body">

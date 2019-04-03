@@ -108,9 +108,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+         $employee = Employee::find($id);  
+        return view('employee.show', compact('employee'));  
     }
 
     /**
@@ -208,6 +209,8 @@ class EmployeeController extends Controller
             if (File::exists($employee->photo)) { 
                 File::delete($employee->photo);    
             } 
+
+            // unlink($employee->photo);
             
             $employee->delete();
         }
