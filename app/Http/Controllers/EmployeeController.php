@@ -110,7 +110,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-         $employee = Employee::find($id);  
+        $employee = Employee::find($id);  
         return view('employee.show', compact('employee'));  
     }
 
@@ -212,21 +212,22 @@ class EmployeeController extends Controller
 
             // unlink($employee->photo);
             
-            $employee->delete();
-        }
-
-
-        if ( $employee->delete() ) { 
+            $delete = $employee->delete();
             
-              $notification = array(
-                'message' => 'Employee Deleted Successfully',
-                'alert-type' => 'success' 
-            );
+            if ( $delete ) { 
+                
+                  $notification = array(
+                    'message' => 'Employee Deleted Successfully',
+                    'alert-type' => 'success' 
+                );
 
-            return redirect()->back()->with($notification);  
+                return redirect()->back()->with($notification);  
 
-        } else {
-            return redirect()->back();    
+            } else {
+                return redirect()->back();    
+            }
         }
+
+
     }
 }

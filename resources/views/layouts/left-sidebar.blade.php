@@ -6,35 +6,69 @@
                         </div>
                         <div class="user-info">
                             <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">John Doe <span class="caret"></span></a>
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}
+                                    <span class="caret"></span>
+                                </a>
+
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Logout</a></li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <i class="md md-face-unlock"></i> Profile
+                                            <div class="ripple-wrapper"></div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <i class="md md-settings"></i> Settings
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <i class="md md-lock"></i> 
+                                            Lock screen
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('logout') }}">
+                                            <i class="md md-settings-power"></i> Logout
+                                        </a> 
+                                    </li>
                                 </ul>
                             </div>
                             
-                            <p class="text-muted m-0">Administrator</p>
+                            <p class="text-muted m-0">Administrator</p> 
                         </div>
                     </div>
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
                             <li>
-                                <a href="index.html" class="waves-effect active"><i class="md md-home"></i><span> Dashboard </span></a>
-                            </li>
+                                <a href="{{ route('home') }}" class="waves-effect active"><i class="md md-home"></i><span> Dashboard </span></a>
+                            </li> 
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="fas fa-users"></i><span> Employees </span><span class="pull-right"><i class="md md-add"></i></span></a> 
+                                <a href="#" class="waves-effect">
+                                    <i class="fas fa-users"></i>
+                                    <span> Employees </span>
+                                    <span class="pull-right"><i class="md md-add"></i></span>
+                                </a> 
+
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('employee.create') }}">Add Employee</a></li>
                                     <li><a href="{{ route('employee.index') }}">All Employee</a></li>
                                 </ul> 
                             </li>
 
-                            <li>
-                                <a href="calendar.html" class="waves-effect"><i class="md md-event"></i><span> Calendar </span></a>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="fas fa-users"></i><span> Customers </span><span class="pull-right"><i class="md md-add"></i></span></a> 
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('customer.create') }}">Add Customer</a></li>
+                                    <li><a href="{{ route('customer.index') }}">All Customer</a></li>  
+                                </ul> 
                             </li>
 
                             <li class="has_sub">

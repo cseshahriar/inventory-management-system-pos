@@ -8,7 +8,7 @@
 	        <div class="col-sm-12">
 	            <h4 class="pull-left page-title">Welcome !</h4>
 	            <ol class="breadcrumb pull-right">
-	                <li><a href="{{ route('employee.index') }}">Employee</a></li>
+	                <li><a href="{{ route('customer.index') }}">Customers</a></li>
 	                <li class="active">Create</li>
 	            </ol>
 	        </div>
@@ -19,21 +19,20 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Employee List</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">Customer List</h3></div>
 
                     <div class="panel-body">
 						<div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <table class="datatable datatable-editable table table-striped table-bordered">
                                     
-                                    <thead>   
+                                    <thead>  
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>phone</th>
                                             <th>Address</th>
                                             <th>Image</th>
-                                            <th>Salary</th>
                                             <th>Created At</th>
                                             <th>Tools</th>
                                         </tr>
@@ -42,34 +41,34 @@
                           
                                     <tbody>
 
-										@foreach($employees  as $employee)
+										@foreach($customers  as $customer)
                                         <tr>
                                             <td>{{ $loop->index +1 }}</td>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->phone }}</td> 
-                                            <td>{{ $employee->address }}</td>
+                                            <td>{{ $customer->name }}</td>
+                                            <td>{{ $customer->phone }}</td> 
+                                            <td>{{ $customer->address }}</td>
                                             <td>
-                                            	<img src="{{ asset($employee->photo) }}" alt="" width="80"> 
+                                            	<img src="{{ asset($customer->photo) }}" alt="" width="80"> 
                                             </td> 
-                                             <td>{{$employee->salary }} TK</td>    
+                                             
                                              <td>
-                                             	{{ Carbon\Carbon::parse($employee->created_at)->format('d-m-Y') }}
+                                             	{{ Carbon\Carbon::parse($customer->created_at)->format('d-m-Y') }}
                                              </td>   
 
                                               <td class="actions">
                                                
                                             	{{-- show --}}
-                                            	<a href="{{ route('employee.show', $employee->id) }}" class="on-default edit-row">
+                                            	<a href="{{ route('customer.show', $customer->id) }}" class="on-default edit-row">
                                             		<i class="fa fa-eye"></i>
                                             	</a>    
 
 												{{-- edit --}}
-                                            	<a href="{{ route('employee.edit', $employee->id) }}" class="on-default edit-row">
+                                            	<a href="{{ route('customer.edit', $customer->id) }}" class="on-default edit-row">
                                             		<i class="fa fa-pencil-square"></i>   
                                             	</a>    
 
 												{{-- delete	 --}}
-												<form class="employee" action="{{ route('employee.destroy', $employee->id) }}" method="post" style="display: inline;border:0">
+												<form class="customer" action="{{ route('customer.destroy', $customer->id) }}" method="post" style="display: inline;border:0">
 													@csrf  
 													@method('DELETE')  
 
@@ -78,10 +77,9 @@
 													</button>    
 												</form>  
                                             </td>
-                                           
-                                           
+                                        
                                         </tr>
-                                        @endforeach 
+                                        @endforeach  
                                     
                                     </tbody>
                                 </table>
@@ -118,13 +116,12 @@
                     // window.location.href = link;
                     confirmed = true;
 
-            		$('.employee')[0].submit();    
+            		$('.customer')[0].submit();    
 
                 } else {
-                    swal("Safe Data!"); 
+                    swal("Safe Data!");  
                 }
             });
         });
    </script>
-
 @endsection

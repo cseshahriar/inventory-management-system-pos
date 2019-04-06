@@ -13,6 +13,9 @@
 // Employees Routes
 Route::resource('employee', 'EmployeeController');  
 
+// Customers Routes
+Route::resource('customer', 'CustomerController');    
+
 Route::get('/', function () {  
     return view('welcome');
 });

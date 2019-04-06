@@ -47,7 +47,8 @@
         <!-- Todo -->
         <script src="{{ asset('public/js/jquery.todo.js') }}"></script> 
 
-        <script src="{{ asset('public/js/toastr.min.js') }}"></script>
+        <script src="{{ asset('public/js/toastr.min.js') }}"></script> 
+
         <script src="{{ asset('public/js/sweetalert.min.js') }}"></script> 
         <script>
             @if(Session::has('message')) 
@@ -74,11 +75,13 @@
             Counter Up
             =============================================== */
             jQuery(document).ready(function($) {
+                
                 $('.counter').counterUp({
                     delay: 100,
                     time: 1200
                 });
             });
+
         </script>
 
         @yield('extjs')
