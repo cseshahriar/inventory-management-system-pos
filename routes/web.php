@@ -11,10 +11,13 @@
 |
 */
 // Employees Routes
-Route::resource('employee', 'EmployeeController');  
+Route::resource('employee', 'EmployeeController');   
 
 // Customers Routes
 Route::resource('customer', 'CustomerController');    
+
+// Customers Routes
+Route::resource('supplier', 'SupplierController');     
 
 Route::get('/', function () {  
     return view('welcome');

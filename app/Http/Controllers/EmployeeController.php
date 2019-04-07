@@ -227,7 +227,6 @@ class EmployeeController extends Controller
                 return redirect()->back();    
             }
         }
-
-
     }
+    
 }

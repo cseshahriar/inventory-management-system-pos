@@ -8,7 +8,7 @@
 	        <div class="col-sm-12">
 	            <h4 class="pull-left page-title">Welcome !</h4>
 	            <ol class="breadcrumb pull-right">
-	                <li><a href="{{ route('customer.index') }}">Customer</a></li>
+	                <li><a href="{{ route('supplier.index') }}">Suppliers</a></li>
 	                <li class="active">Show</li>
 	            </ol>
 	        </div>
@@ -19,77 +19,81 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Customer Show</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">Suppliers View</h3></div>
 
 
                     <div class="panel-body">
 
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <p>{{ $customer->name }}</p>
+                                <p>{{ $supplier->name }}</p>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <p>{{ $customer->email }}</p>
+                                <p>{{ $supplier->email }}</p>
                             </div>
 
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <p>{{ $customer->phone }}</p>
+                                <p>{{ $supplier->phone }}</p>
                                 
                             </div>
 
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <p>{{ $customer->address }}</p>
+                                <p>{{ $supplier->address }}</p>
                             </div>
 
 
                             <div class="form-group">
-                                <label for="shop_name">Shop Name</label>
-                                <p>{{ $customer->shopname }}</p> 
+                                <label for="address">Shop Name</label>
+                                <p>{{ $supplier->shop }}</p> 
                             </div>
 
 
                             <div class="form-group">
-                                <label for="account_holder">Account Holder</label>
-                                <p>{{ $customer->account_holder }}</p> 
+                                <label for="type">Supplier Type</label>
+                                <p>{{ ucwords($supplier->type) }}</p>    
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="account_holder">Account Holder</label>  
+                                <p>{{ $supplier->account_holder }}</p> 
                             </div>
 
 
                             <div class="form-group">
                                 <label for="account_number">Account Number</label>
-                                <p>{{ $customer->account_number }}</p> 
+                                <p>{{ $supplier->account_number }}</p> 
                             </div>
 
 
                             <div class="form-group">
                                 <label for="bank_name">Bank Name</label>
-                                <p>{{ $customer->bank_name }}</p> 
+                                <p>{{ $supplier->bank_name }}</p> 
                             </div>
 
 
                             <div class="form-group">
-                                <label for="bank_brance">Bank Brance</label> 
-                                <p>{{ $customer->bank_brance }}</p> 
+                                <label for="brance_name">Bank Brance</label> 
+                                <p>{{ $supplier->brance_name }}</p> 
                             </div>
 
                             <div class="form-group">
-                               	
                                 <label for="photo">Photo</label> <br>
-                                <img src="{{ asset($customer->photo) }}"  style="width:80px">
-                               
+                                <img src="{{ asset($supplier->photo) }}"  style="width:80px">
                             </div>
 
                              <div class="form-group">
                                 <label for="city">City</label>
-                              <p>{{ $customer->city }}</p> 
+                              <p>{{ $supplier->city }}</p> 
                             </div>
 
-                          <a href="{{ route('customer.index') }}" class="btn btn-xs btn-success">Back</a>
+                          <a href="{{ route('supplier.index') }}" class="btn btn-xs btn-success">Back</a>
                         </form>
-                    </div><!-- panel-body -->
+                    </div><!-- panel-body --> 
                 </div> <!-- panel -->
             </div> <!-- col-->
             
