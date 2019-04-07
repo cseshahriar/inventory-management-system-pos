@@ -18,8 +18,7 @@ class CreateSalariesTable extends Migration
             $table->integer('employee_id');
             $table->string('month');
             $table->string('year'); 
-            $table->decimal('advance_salary')->nullable(); 
-            $table->integer('status')->default(0);
+            $table->decimal('advance_salary')->nullable();  
             $table->timestamps();
         });
     }

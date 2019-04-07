@@ -52,8 +52,7 @@ class SalaryController extends Controller
             'employee_id' => 'required',  
             'month' => 'required',   
             'year' => 'required',   
-            'advance_salary' => 'nullable',  
-            'status' => 'required',  
+            'advance_salary' => 'nullable' 
         ]);
 
         $salary = new Salary;
@@ -62,7 +61,6 @@ class SalaryController extends Controller
         $salary->month = $request->month;
         $salary->year = $request->year;
         $salary->advance_salary = $request->advance_salary;
-        $salary->status = $request->status;
 
         $salary->save();  
 
@@ -118,7 +116,6 @@ class SalaryController extends Controller
             'month' => 'required',  
             'year' => 'required',   
             'advance_salary' => 'nullable',   
-            'status' => 'required',  
         ]);
 
         $salary = Salary::find($id);  
@@ -127,7 +124,6 @@ class SalaryController extends Controller
         $salary->month = $request->month;
         $salary->year = $request->year;
         $salary->advance_salary = $request->advance_salary;
-        $salary->status = $request->status;
 
         $salary->save();  
 
@@ -171,7 +167,7 @@ class SalaryController extends Controller
                 return redirect()->back()->with($notification);  
 
             } else {
-                return redirect()->back();      
+                return redirect()->back();       
             } 
         }
     }

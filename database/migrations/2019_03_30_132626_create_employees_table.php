@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('experience')->nullable(); 
             $table->string('photo')->nullable();
             $table->string('nid', 20)->unique();    
-            $table->string('salary');
+            $table->decimal('salary');   
             $table->string('vacation')->nullable();
             $table->string('city');
             $table->timestamps(); 

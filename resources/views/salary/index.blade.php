@@ -8,7 +8,7 @@
 	        <div class="col-sm-12">
 	            <h4 class="pull-left page-title">Welcome !</h4>
 	            <ol class="breadcrumb pull-right">
-	                <li><a href="{{ route('salary.index') }}">Salaries</a></li>
+	                <li><a href="{{ route('salary.index') }}">Advance Salaries</a></li>
 	                <li class="active">Create</li>
 	            </ol>
 	        </div>
@@ -19,9 +19,9 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Salaries List</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">All Advance Salary</h3></div>
 
-                    <div class="panel-body">
+                    <div class="panel-body"> 
 						<div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <table class="datatable datatable-editable table table-striped table-bordered"> 
@@ -29,13 +29,12 @@
                                     <thead>  
                                         <tr>
                                             <th>#</th>
-                                            <th>Employee Name</th> 
+                                            <th>Name</th> 
+                                            <th>Photo</th> 
                                             <th>Month</th>
-                                            <th>Year</th>
                                             <th>Salary</th>
-                                            <th>Advance Salary</th>
-                                            <th>Status</th>
-                                            <th>Tools</th>
+                                            <th>Advance</th>
+                                            <th>Tools</th> 
                                         </tr>
                                     </thead>
 
@@ -46,19 +45,14 @@
                                         <tr>
                                             <td>{{ $loop->index +1 }}</td>
                                             <td>{{ $salary->employee->name }}</td>
-                                            <td>{{ $salary->month }}</td> 
-                                            <td>{{ $salary->year }}</td>
-                                            <td>{{ $salary->employee->salary }} TK</td>
-                                            <td>{{ $salary->employee->advance_salary }}</td>
                                             <td>
-                                                @if($salary->status == 1)
-                                                <span class="text-success">Paid</span>
-                                                @else
-                                                <span class="text-danger">Unpaid</span>
-                                                @endif 
-                                            </td> 
-                                           
-                                              <td class="actions">
+                                                <img src="{{ $salary->employee->photo }}" alt="" width="80">
+                                            </td>
+                                            <td>{{ $salary->month }} {{ $salary->year }}</td> 
+                                            <td>{{ $salary->employee->salary }} TK</td>
+                                            <td>{{ $salary->advance_salary }} TK</td> 
+                        
+                                            <td class="actions">
                                                
                                             	{{-- show --}}
                                             	<a href="{{ route('salary.show', $salary->id) }}" class="on-default edit-row">

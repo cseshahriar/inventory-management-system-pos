@@ -69,26 +69,18 @@
 
                                 </select>  
                             </div> 
-
-                            <div class="form-group">
-                                <label for="advance_salary">Salary</label>
-                                <input type="text" name="advance_salary" id="advance_salary" class="form-control" placeholder="Advance Salary" value="{{ $salary->advance_salary}}"> 
-                            </div>
-
+                            
                             <div class="form-group">
                                 <label for="year">Year</label>
                                 <input type="text" name="year" id="year" class="form-control" placeholder="Year" value="{{ $salary->year }}">  
                             </div>
 
                             <div class="form-group">
-                                <label for="status">Status</label>
-                               <select name="status" id="status" class="form-control">
-                                   <option value="" selected>-- Select Status --</option>
-                                   <option value="1" {{ $salary->status == 1 ? 'selected' : ''}}>Paid</option>
-                                   <option value="0" {{ $salary->status == 0 ? 'selected' : ''}}>Unpaid</option>    
-                               </select> 
+                                <label for="advance_salary">Salary</label>
+                                <input type="text" name="advance_salary" id="advance_salary" class="form-control" placeholder="Advance Salary" value="{{ $salary->advance_salary}}"> 
                             </div>
-                          
+
+
                             <button type="submit" class="btn btn-purple waves-effect waves-light">Save Changes</button>  
 
                         </form>

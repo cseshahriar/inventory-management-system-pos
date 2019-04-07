@@ -69,24 +69,16 @@
                             </div> 
 
                             <div class="form-group">
+                                <label for="year">Year</label>
+                                <input type="text" name="year" id="year" class="form-control" placeholder="Year">  
+                            </div>
+                            
+                            <div class="form-group">
                                 <label for="advance_salary">Advance Salary</label>
                                 <input type="text" name="advance_salary" id="advance_salary" class="form-control" placeholder="Advance Salary">
                             </div>
 
-                            <div class="form-group">
-                                <label for="year">Year</label>
-                                <input type="text" name="year" id="year" class="form-control" placeholder="Year">  
-                            </div>
 
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                               <select name="status" id="status" class="form-control">
-                                   <option value="" selected>-- Select Status --</option>
-                                   <option value="1">Paid</option>
-                                   <option value="0">Unpaid</option>     
-                               </select> 
-                            </div>
-                       
                             <button type="submit" class="btn btn-purple waves-effect waves-light">Add Salary</button>
                         </form>
                     </div><!-- panel-body -->

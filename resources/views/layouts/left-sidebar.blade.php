@@ -82,15 +82,14 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="fa fa-money"></i><span> Salaries (EMP) </span><span class="pull-right"><i class="md md-add"></i></span></a> 
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('salary.create') }}">Add Salary</a></li>
-                                    <li><a href="{{ route('salary.index') }}">All Salary</a></li>  
+                                    <li><a href="{{ route('salary.create') }}">Add Advance Salary</a></li>
+                                    <li><a href="{{ route('salary.index') }}">All Advance Salary</a></li>
                                 </ul> 
-                            </li>
+                            </li>  
 
-                        
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="clearfix"></div> 
                 </div>
-            </div>
+            </div> 
