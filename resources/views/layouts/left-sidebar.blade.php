@@ -52,7 +52,7 @@
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fa fa-users"></i>
                                     <span> Employees </span>
                                     <span class="pull-right"><i class="md md-add"></i></span>
                                 </a> 
@@ -64,27 +64,33 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="fas fa-users"></i><span> Customers </span><span class="pull-right"><i class="md md-add"></i></span></a> 
+                                <a href="#" class="waves-effect"><i class="fa fa-tachometer"></i><span> Customers </span><span class="pull-right"><i class="md md-add"></i></span></a> 
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('customer.create') }}">Add Customer</a></li>
                                     <li><a href="{{ route('customer.index') }}">All Customer</a></li>  
                                 </ul> 
                             </li>
-
+                            
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="fas fa-users"></i><span> Suppliers </span><span class="pull-right"><i class="md md-add"></i></span></a> 
+                                <a href="#" class="waves-effect"><i class="fa fa-tachometer"></i><span> Suppliers </span><span class="pull-right"><i class="md md-add"></i></span></a> 
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('supplier.create') }}">Add Suppliers</a></li>
                                     <li><a href="{{ route('supplier.index') }}">All Suppliers</a></li>  
                                 </ul> 
                             </li>
-
-                          
+                            
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="fa fa-money"></i><span> Salaries (EMP) </span><span class="pull-right"><i class="md md-add"></i></span></a> 
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('salary.create') }}">Add Salary</a></li>
+                                    <li><a href="{{ route('salary.index') }}">All Salary</a></li>  
+                                </ul> 
+                            </li>
 
                         
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="clearfix"></div>
+                    <div class="clearfix"></div> 
                 </div>
             </div>

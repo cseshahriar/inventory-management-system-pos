@@ -28,7 +28,11 @@
         <!-- Custom Files -->
         <link href="{{ asset('public/css/helper.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('public/css/style.css') }}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> 
+     
+        <!-- DataTables -->
+        <link href="{{ asset('public/assets/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" href="{{ asset('public/asset/font-awesome/css/font-awesome.min.css') }}"> 
         <link rel="stylesheet" href="{{ asset('public/css/toastr.min.css') }}">  
         <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">   
 

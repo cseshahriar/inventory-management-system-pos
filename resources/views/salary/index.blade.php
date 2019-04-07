@@ -8,7 +8,7 @@
 	        <div class="col-sm-12">
 	            <h4 class="pull-left page-title">Welcome !</h4>
 	            <ol class="breadcrumb pull-right">
-	                <li><a href="{{ route('supplier.index') }}">Suppliers</a></li>
+	                <li><a href="{{ route('salary.index') }}">Salaries</a></li>
 	                <li class="active">Create</li>
 	            </ol>
 	        </div>
@@ -19,21 +19,22 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Suppliers List</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">Salaries List</h3></div>
 
                     <div class="panel-body">
 						<div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <table class="datatable datatable-editable table table-striped table-bordered">
+                                <table class="datatable datatable-editable table table-striped table-bordered"> 
                                     
                                     <thead>  
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th> 
-                                            <th>phone</th>
-                                            <th>Address</th>
-                                            <th>Image</th>
-                                            <th>Created At</th>
+                                            <th>Employee Name</th> 
+                                            <th>Month</th>
+                                            <th>Year</th>
+                                            <th>Salary</th>
+                                            <th>Advance Salary</th>
+                                            <th>Status</th>
                                             <th>Tools</th>
                                         </tr>
                                     </thead>
@@ -41,34 +42,36 @@
                           
                                     <tbody>
 
-										@foreach($suppliers  as $supplier)
+										@foreach($salaries  as $salary)
                                         <tr>
                                             <td>{{ $loop->index +1 }}</td>
-                                            <td>{{ $supplier->name }}</td>
-                                            <td>{{ $supplier->phone }}</td> 
-                                            <td>{{ $supplier->address }}</td>
+                                            <td>{{ $salary->employee->name }}</td>
+                                            <td>{{ $salary->month }}</td> 
+                                            <td>{{ $salary->year }}</td>
+                                            <td>{{ $salary->employee->salary }} TK</td>
+                                            <td>{{ $salary->employee->advance_salary }}</td>
                                             <td>
-                                            	<img src="{{ asset($supplier->photo) }}" alt="" width="80"> 
+                                                @if($salary->status == 1)
+                                                <span class="text-success">Paid</span>
+                                                @else
+                                                <span class="text-danger">Unpaid</span>
+                                                @endif 
                                             </td> 
-                                             
-                                             <td>
-                                             	{{ Carbon\Carbon::parse($supplier->created_at)->format('d-m-Y') }}
-                                             </td>   
-
+                                           
                                               <td class="actions">
                                                
                                             	{{-- show --}}
-                                            	<a href="{{ route('supplier.show', $supplier->id) }}" class="on-default edit-row">
+                                            	<a href="{{ route('salary.show', $salary->id) }}" class="on-default edit-row">
                                             		<i class="fa fa-eye"></i>
                                             	</a>    
 
 												{{-- edit --}}
-                                            	<a href="{{ route('supplier.edit', $supplier->id) }}" class="on-default edit-row">
+                                            	<a href="{{ route('salary.edit', $salary->id) }}" class="on-default edit-row">
                                             		<i class="fa fa-pencil-square"></i>   
                                             	</a>    
 
 												{{-- delete	 --}}
-												<form class="supplier" action="{{ route('supplier.destroy', $supplier->id) }}" method="post" style="display: inline;border:0">
+												<form class="salary" action="{{ route('salary.destroy', $salary->id) }}" method="post" style="display: inline;border:0">
 													@csrf  
 													@method('DELETE')  
 
@@ -116,7 +119,7 @@
                     // window.location.href = link;
                     confirmed = true;
 
-            		$('.supplier')[0].submit();     
+            		$('.salary')[0].submit();      
 
                 } else {
                     swal("Safe Data!");   

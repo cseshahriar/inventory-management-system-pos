@@ -16,8 +16,11 @@ Route::resource('employee', 'EmployeeController');
 // Customers Routes
 Route::resource('customer', 'CustomerController');    
 
-// Customers Routes
-Route::resource('supplier', 'SupplierController');     
+// Suppliers Routes
+Route::resource('supplier', 'SupplierController'); 
+
+// Salaries Routes
+Route::resource('salary', 'SalaryController');       
 
 Route::get('/', function () {  
     return view('welcome');

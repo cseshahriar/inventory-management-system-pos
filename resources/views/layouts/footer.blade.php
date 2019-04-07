@@ -43,13 +43,18 @@
 
         <!-- Chat -->
         <script src="{{ asset('public/js/jquery.chat.js') }}"></script>
+        
+        {{-- datatable --}}
+        <script src="{{ asset('public/assets/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('public/assets/datatables/dataTables.bootstrap.js') }}"></script>
 
         <!-- Todo -->
-        <script src="{{ asset('public/js/jquery.todo.js') }}"></script> 
+        <script src="{{ asset('public/js/jquery.todo.js') }}"></script>  
 
         <script src="{{ asset('public/js/toastr.min.js') }}"></script> 
 
         <script src="{{ asset('public/js/sweetalert.min.js') }}"></script> 
+
         <script>
             @if(Session::has('message')) 
                 var type = "{{ Session::get('alert-type', 'info') }}"; 
@@ -83,6 +88,13 @@
             });
 
         </script>
+
+        {{-- datatable --}}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.datatable').dataTable();
+            } );
+        </script>  
 
         @yield('extjs')
     

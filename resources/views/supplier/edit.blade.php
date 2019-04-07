@@ -77,6 +77,16 @@
                             </div>
 
                             <div class="form-group">
+                               <label for="type">Supplier Type</label>
+                               <select name="type" id="type" class="form-control">
+                                   <option value="">-- Select Suppliers Type --</option>
+                                   <option value="distributer" {{ $supplier->type == 'distributer' ? 'selected' : '' }}>Distributer</option>
+                                   <option value="wholesaler" {{ $supplier->type == 'wholesaler' ? 'selected' : '' }}>Wholesaler</option>
+                                   <option value="brochure" {{ $supplier->type == 'brochure' ? 'selected' : '' }}>Brochure</option>      
+                               </select> 
+                            </div>
+
+                            <div class="form-group">
                                 <label for="account_holder">Account Holder</label>  
                                
                                 <input type="text" name="account_holder" id="account_holder" class="form-control" placeholder="Account Holder" value="{{ $supplier->account_holder }}">   
