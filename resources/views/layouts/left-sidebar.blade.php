@@ -90,6 +90,16 @@
                                     <li><a href="{{ route('salary.paid') }}">All Salary</a></li>  
 
                                 </ul> 
+                            </li> 
+                            
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="fa fa-list"></i><span> Categories </span><span class="pull-right"><i class="md md-add"></i></span></a> 
+                                <ul class="list-unstyled"> 
+
+                                    <li><a href="{{ route('category.create') }}">Add Category</a></li>
+
+                                    <li><a href="{{ route('category.index') }}">All Category</a></li>  
+                                </ul>  
                             </li>   
 
                         </ul>

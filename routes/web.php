@@ -21,7 +21,10 @@ Route::resource('supplier', 'SupplierController');
 
 // Salaries Routes
 Route::get('salary/paid', 'AdvanceSalaryController@paidSalaries')->name('salary.paid');  
-Route::resource('salary', 'AdvanceSalaryController');                        
+Route::resource('salary', 'AdvanceSalaryController'); 
+
+// Category Routes  
+Route::resource('category', 'CategoryController');                         
        
 Route::get('/', function () {  
     return view('welcome');
