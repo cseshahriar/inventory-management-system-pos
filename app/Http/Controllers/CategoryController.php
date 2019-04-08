@@ -122,19 +122,35 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);  
 
-        $delete = $category->delete();
+       if (!is_null($category)) { 
 
-        if ($delete) {     
-            
-            $notification = array(
-                'message' => 'Category Deleted Successfully', 
-                'alert-type' => 'success'  
-            );
+            // if it is parent category, then delete all subcategory  
+            if ($category->category_id == NULL) { // null means primary 
+                // subcategories 
+                $subCategories = Category::where('category_id', $category->id)->get(); 
+                foreach ($subCategories as $subCategory) {
+                    $subCategory->delete();  
+                }
+            }
 
-            return redirect()->route('category.index')->with($notification);    
+            $delete = $category->delete();
 
-        } else {
-            return redirect()->back();       
+            if ($delete) {     
+                
+                $notification = array(
+                    'message' => 'Category Deleted Successfully', 
+                    'alert-type' => 'success'  
+                );
+
+                return redirect()->route('category.index')->with($notification);    
+
+            } else {
+                return redirect()->back();       
+            }
+
         }
+
+
+
     }
 }

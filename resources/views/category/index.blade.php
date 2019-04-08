@@ -67,9 +67,9 @@
                                             	</a>     
 
 												{{-- delete	 --}}
-												<form class="category" action="{{ route('category.destroy', $category->id) }}" method="post" style="display: inline;border:0"> 
+												<form id="category" action="{{ route('category.destroy', $category->id) }}" method="post" style="display: inline;border:0"> 
 													@csrf  
-													@method('DELETE')  
+													@method('DELETE')   
 
 													<button class="on-default remove-row delete" type="submit" style="border: none;background: none">	
 														<i class="fa fa-trash"></i>  
@@ -115,7 +115,7 @@
                     // window.location.href = link;
                     confirmed = true;
 
-            		$('.category')[0].submit();       
+            		$('#category')[0].submit();        
 
                 } else {
                     swal("Safe Data!");   
