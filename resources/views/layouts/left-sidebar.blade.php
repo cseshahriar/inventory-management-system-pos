@@ -84,6 +84,8 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('salary.create') }}">Add Advance Salary</a></li>
                                     <li><a href="{{ route('salary.index') }}">All Advance Salary</a></li>
+                                    <li><a href="{{ route('salary.pay') }}">Pay Salary</a></li>
+                                    <li><a href="{{ route('salary.lastmonth') }}">Last Month Salary</a></li>
                                 </ul> 
                             </li>  
 

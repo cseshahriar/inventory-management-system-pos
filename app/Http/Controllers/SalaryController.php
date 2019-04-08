@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Salary;
+use App\AdvanceSalary;
 use Illuminate\Http\Request;
 
 
@@ -26,7 +26,7 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        $salaries = Salary::all();  
+        $salaries = AdvanceSalary::all();  
         return view('salary.index', compact('salaries'));
     }
 
@@ -55,7 +55,7 @@ class SalaryController extends Controller
             'advance_salary' => 'nullable' 
         ]);
 
-        $salary = new Salary;
+        $salary = new AdvanceSalary;
 
         $salary->employee_id = $request->employee_id;
         $salary->month = $request->month;
@@ -86,7 +86,7 @@ class SalaryController extends Controller
      */
     public function show($id)
     {
-        $salary = Salary::find($id);
+        $salary = AdvanceSalary::find($id);
         return view('salary.show', compact('salary'));    
     }
 
@@ -98,7 +98,7 @@ class SalaryController extends Controller
      */
     public function edit($id)
     {
-        $salary = Salary::find($id);
+        $salary = AdvanceSalary::find($id);
         return view('salary.edit', compact('salary')); 
     }
 
@@ -118,7 +118,7 @@ class SalaryController extends Controller
             'advance_salary' => 'nullable',   
         ]);
 
-        $salary = Salary::find($id);  
+        $salary = AdvanceSalary::find($id);  
 
         $salary->employee_id = $request->employee_id;
         $salary->month = $request->month;
@@ -149,7 +149,7 @@ class SalaryController extends Controller
      */
     public function destroy($id)
     {
-         $salary = Salary::find($id); 
+         $salary = AdvanceSalary::find($id); 
 
         if (!is_null($salary)) {
             

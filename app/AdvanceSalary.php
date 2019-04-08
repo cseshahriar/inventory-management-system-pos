@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Salary extends Model
+class AdvanceSalary extends Model 
 {
+	protected $table = 'advancesalaries';
+	
      protected $fillable = ['employee_id', 'month', 'year', 'salary', 'advance_salary', 'status']; 
 
 
