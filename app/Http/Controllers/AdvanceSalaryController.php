@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\AdvanceSalary;
+use App\Employee;
 use Illuminate\Http\Request;
 
 
-class SalaryController extends Controller  
+class AdvanceSalaryController extends Controller   
 {
     /**
      * Create a new controller instance.
@@ -170,5 +171,15 @@ class SalaryController extends Controller
                 return redirect()->back();       
             } 
         }
+    } 
+
+    public function paidSalaries()
+    {
+        $month = date('F', strtotime('-1 months'));
+
+        $employees = Employee::all();
+        $advances = AdvanceSalary::where('month', $month)->get();  
+
+        return view('salary.paid', compact('employees', 'advances'));  
     }
 }

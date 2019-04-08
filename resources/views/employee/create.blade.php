@@ -39,32 +39,32 @@
 
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{ old('email') }}">
                                
                             </div>
 
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone">
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="{{ old('phone') }}">
                                 
                             </div>
 
                             <div class="form-group">
                                 <label for="address">Address</label>
                                
-                                <textarea name="address" id="address" cols="3" rows="3" class="form-control" placeholder="Address"></textarea>
+                                <textarea name="address" id="address" cols="3" rows="3" class="form-control" placeholder="Address">{{ old('address') }}</textarea>
                                
                             </div>
 
                             <div class="form-group">
                                 <label for="experience">Experience</label> 
                                
-                                <textarea name="experience" id="experience" cols="3" rows="3" class="form-control" placeholder="experience"></textarea>
+                                <textarea name="experience" id="experience" cols="3" rows="3" class="form-control" placeholder="Experience">{{ old('experience') }}</textarea>
                                  
                             </div>
 
@@ -79,27 +79,26 @@
                             <div class="form-group">
                                 <label for="nid">National ID No.</label>  
                                
-                                <input type="number" name="nid" id="nid" class="form-control" placeholder="National ID No.">  
+                                <input type="number" name="nid" id="nid" class="form-control" placeholder="National ID No." value="{{ old('nid') }}">  
                                  
                             </div>
 
                              <div class="form-group">
                                 <label for="salary">Salary</label>
-                                <input type="text" name="salary" class="form-control" id="salary" placeholder="Salary">
+                                <input type="text" name="salary" class="form-control" id="salary" placeholder="Salary" value="{{ old('salary') }}">
                             </div>
 
                              <div class="form-group">
                                 <label for="vacation">Vacation</label>
-                                <input type="text" name="vacation" class="form-control" id="vacation" placeholder="Vacation">
+                                <input type="text" name="vacation" class="form-control" id="vacation" placeholder="Vacation" value="{{ old('vacation') }}">
                             </div>
 
                              <div class="form-group">
                                 <label for="city">City</label>
-                                <input type="text" name="city" class="form-control" id="city" placeholder="City">
+                                <input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{ old('city') }}">
                             </div>
 
-                          
-                            <button type="submit" class="btn btn-purple waves-effect waves-light">Add Employee</button>
+                            <button type="submit" class="btn btn-purple waves-effect waves-light">Add Employee</button>    
                         </form>
                     </div><!-- panel-body -->
                 </div> <!-- panel -->

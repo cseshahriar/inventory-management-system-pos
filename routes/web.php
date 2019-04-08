@@ -20,10 +20,9 @@ Route::resource('customer', 'CustomerController');
 Route::resource('supplier', 'SupplierController'); 
 
 // Salaries Routes
-Route::resource('salary', 'SalaryController');        
-Route::get('pay/salary', 'SalaryController@pay')->name('salary.pay');       
-Route::get('last-month/salary', 'SalaryController@lastMonthSalary')->name('salary.lastmonth');        
-
+Route::get('salary/paid', 'AdvanceSalaryController@paidSalaries')->name('salary.paid');  
+Route::resource('salary', 'AdvanceSalaryController');                        
+       
 Route::get('/', function () {  
     return view('welcome');
 });
