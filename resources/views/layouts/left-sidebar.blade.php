@@ -112,6 +112,18 @@
 
                                     <li><a href="{{ route('product.index') }}">All Product</a></li>    
                                 </ul>  
+                            </li> 
+                            
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <span> Expenses </span><span class="pull-right"><i class="md md-add"></i></span></a>  
+                                <ul class="list-unstyled"> 
+
+                                    <li><a href="{{ route('expense.create') }}">Add Expense</a></li>
+
+                                    <li><a href="{{ route('expense.index') }}">All Expense</a></li>    
+                                </ul>  
                             </li>   
 
                         </ul>

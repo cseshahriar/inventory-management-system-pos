@@ -27,7 +27,10 @@ Route::resource('salary', 'AdvanceSalaryController');
 Route::resource('category', 'CategoryController');
 
 // Products Routes   
-Route::resource('product', 'ProductController');                            
+Route::resource('product', 'ProductController');   
+
+// Products Routes   
+Route::resource('expense', 'ExpenseController');                             
        
 Route::get('/', function () {  
     return view('welcome');
