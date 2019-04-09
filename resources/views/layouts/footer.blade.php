@@ -30,8 +30,11 @@
         <script src="{{ asset('public/assets/flot-chart/jquery.flot.selection.js') }}"></script>
         <script src="{{ asset('public/assets/flot-chart/jquery.flot.stack.js') }}"></script>
         <script src="{{ asset('public/assets/flot-chart/jquery.flot.crosshair.js') }}"></script>
+        
+        <script src="{{ asset('public/assets/timepicker/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('public/assets/timepicker/bootstrap-datepicker.js') }}"></script>
 
-        <!-- Counter-up --> 
+        <!-- Counter-up -->  
         <script src="{{ asset('public/assets/counterup/waypoints.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('public/assets/counterup/jquery.counterup.min.js') }}" type="text/javascript"></script>
         
@@ -84,6 +87,24 @@
                 $('.counter').counterUp({
                     delay: 100,
                     time: 1200
+                });
+
+                // Time Picker
+                jQuery('#timepicker').timepicker({defaultTIme: false});
+                
+                jQuery('#timepicker2').timepicker({showMeridian: false});
+
+                jQuery('#timepicker3').timepicker({minuteStep: 15});
+
+                // Date Picker
+                jQuery('#datepicker').datepicker({format: 'yy-mm-dd'});   
+                jQuery('#datepicker2').datepicker({format: 'yy-mm-dd'});   
+
+                jQuery('#datepicker-inline').datepicker();
+
+                jQuery('#datepicker-multiple').datepicker({
+                    numberOfMonths: 3,
+                    showButtonPanel: true
                 });
             });
 

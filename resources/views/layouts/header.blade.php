@@ -34,6 +34,8 @@
 
         <link rel="stylesheet" href="{{ asset('public/asset/font-awesome/css/font-awesome.min.css') }}"> 
         <link rel="stylesheet" href="{{ asset('public/css/toastr.min.css') }}">  
+        <link href="{{ asset('public/assets/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('public/assets/timepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" /> 
         <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">   
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

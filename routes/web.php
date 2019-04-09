@@ -24,7 +24,10 @@ Route::get('salary/paid', 'AdvanceSalaryController@paidSalaries')->name('salary.
 Route::resource('salary', 'AdvanceSalaryController'); 
 
 // Category Routes  
-Route::resource('category', 'CategoryController');                         
+Route::resource('category', 'CategoryController');
+
+// Products Routes   
+Route::resource('product', 'ProductController');                            
        
 Route::get('/', function () {  
     return view('welcome');

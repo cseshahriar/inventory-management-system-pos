@@ -100,6 +100,18 @@
 
                                     <li><a href="{{ route('category.index') }}">All Category</a></li>  
                                 </ul>  
+                            </li> 
+                            
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span> Products </span><span class="pull-right"><i class="md md-add"></i></span></a>  
+                                <ul class="list-unstyled"> 
+
+                                    <li><a href="{{ route('product.create') }}">Add Product</a></li>
+
+                                    <li><a href="{{ route('product.index') }}">All Product</a></li>    
+                                </ul>  
                             </li>   
 
                         </ul>
