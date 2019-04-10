@@ -31,6 +31,8 @@ Route::resource('product', 'ProductController');
 
 // Products Routes   
 Route::resource('expense', 'ExpenseController');                             
+Route::get('montnly', 'ExpenseController@montnly')->name('expense.montnly');                             
+Route::get('monthly/{month}', 'ExpenseController@single')->name('expense.single');                              
        
 Route::get('/', function () {  
     return view('welcome');

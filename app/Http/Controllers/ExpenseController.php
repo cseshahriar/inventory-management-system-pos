@@ -8,6 +8,39 @@ use Illuminate\Http\Request;
 class ExpenseController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth'); 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function montnly()
+    {
+        $month = date('F');
+        $expenses = Expense::where('month', $month)->get(); 
+        return view('expense.montnly', compact('expenses'));    
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function single($month)
+    {
+       $monthlyexpenses = Expense::where('month', $month)->get(); 
+       return view('expense.single', compact('monthlyexpenses', 'month'));        
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

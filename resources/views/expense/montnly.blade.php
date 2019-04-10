@@ -20,30 +20,56 @@
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">All Expense</h3>
+                        <h3 class="panel-title">Monthly Expense</h3>
+                        
+                        <div class="btn-group">
+                            <a href="{{ url('/monthly/January') }}" class="btn btn-primary">January</a>
 
-                        <h5 class="text-center text-danger">Total Expense For Today :
+                            <a href="{{ url('/monthly/February') }}" class="btn btn-info">February</a>
+
+                            <a href="{{ url('/monthly/March') }}" class="btn btn-success">March</a>
+
+                            <a href="{{ url('/monthly/April') }}" class="btn btn-warning">April</a> 
+
+                            <a href="{{ url('/monthly/May') }}" class="btn btn-danger">May</a> 
+
+                            <a href="{{ url('/monthly/June') }}" class="btn btn-secondary">June</a> 
+
+                            <a href="{{ url('/monthly/July') }}" class="btn btn-info">July</a> 
+
+                            <a href="{{ url('/monthly/August') }}" class="btn btn-primary">August</a> 
+
+                            <a href="{{ url('/monthly/September') }}" class="btn btn-success">September</a> 
+
+                            <a href="{{ url('/monthly/October') }}" class="btn btn-warning">October</a> 
+
+                            <a href="{{ url('/monthly/November') }}" class="btn btn-danger">November</a> 
+
+                            <a href="{{ url('/monthly/December') }}" class="btn btn-secondary">December</a> 
+                        </div>
+
+                        <h5 class="text-center text-danger">Total Expense of {{ date('F Y')}} :
                         @php 
                             $total = 0; 
                             date_default_timezone_set('Asia/Dhaka'); 
-                            $today = date('Y-m-d');
-                            $expenses = App\Expense::where('date', $today)->get(); 
+                            $month = date('F');  
+                            $expenses = App\Expense::where('month', $month)->get(); 
                            
                             foreach ($expenses as $expense) {
-                                $total += $expense->amount; 
+                                $total += $expense->amount;  
                             }
                             
-                        @endphp
-                        {{ $total }} Tk 
+                        @endphp 
+                        {{ $total }} Tk   
                         </h5>
                     </div>
 
                     <div class="panel-body"> 
 						<div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <table id="datatable" class="datatable datatable-editable table table-striped table-bordered">  
+                                <table id="datatable" class="display nowrap datatable datatable-editable table table-striped table-bordered">   
                                     
-                                    <thead>  
+                                    <thead>   
                                         <tr>
                                             <th>#</th>
                                             <th>Details</th> 

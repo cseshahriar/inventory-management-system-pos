@@ -50,6 +50,14 @@
         {{-- datatable --}}
         <script src="{{ asset('public/assets/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('public/assets/datatables/dataTables.bootstrap.js') }}"></script>
+        {{-- datatable printable  --}}
+        <script src="{{ asset('public/js/dataTables.buttons.min.js')}}"></script> 
+        <script src="{{ asset('public/js/buttons.flash.min.js')}}"></script> 
+        <script src="{{ asset('public/js/jszip.min.js')}}"></script> 
+        <script src="{{ asset('public/js/pdfmake.min.js')}}"></script>  
+        <script src="{{ asset('public/js/vfs_fonts.js')}}"></script> 
+        <script src="{{ asset('public/js/buttons.html5.min.js')}}"></script> 
+        <script src="{{ asset('public/js/buttons.print.min.js')}}"></script>  
 
         <!-- Todo -->
         <script src="{{ asset('public/js/jquery.todo.js') }}"></script>  
@@ -57,6 +65,7 @@
         <script src="{{ asset('public/js/toastr.min.js') }}"></script> 
 
         <script src="{{ asset('public/js/sweetalert.min.js') }}"></script> 
+
 
         <script>
             @if(Session::has('message')) 
@@ -112,12 +121,15 @@
 
         {{-- datatable --}}
         <script type="text/javascript">
-            $(document).ready(function() {
-                $('.datatable').dataTable();
-            } );
+
+            $(document).ready(function() { 
+
+                $('#datatable').dataTable();    
+            } ); 
+
         </script>  
 
-        @yield('extjs')
+        @yield('extjs')   
     
     </body>
 </html>

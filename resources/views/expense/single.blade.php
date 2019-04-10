@@ -8,8 +8,8 @@
 	        <div class="col-sm-12">
 	            <h4 class="pull-left page-title">Welcome !</h4>
 	            <ol class="breadcrumb pull-right">
-	                <li><a href="{{ route('supplier.index') }}">Suppliers</a></li>
-	                <li class="active">Create</li>
+	                <li><a href="{{ route('expense.index') }}">Expenses</a></li>
+	                <li class="active">List</li> 
 	            </ol>
 	        </div>
 	    </div>
@@ -19,61 +19,64 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Suppliers List</h3></div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Monthly Expense</h3>
 
-                    <div class="panel-body">
+                        <h5 class="text-center text-danger">Total Expense of {{ $month }}:
+                        @php 
+                            $total = 0; 
+                            date_default_timezone_set('Asia/Dhaka');  
+                            $sexpenses = App\Expense::where('month', $month)->get(); 
+                           
+                            foreach ($sexpenses as $expense) {
+                                $total += $expense->amount;  
+                            }
+                            
+                        @endphp 
+                        {{ $total }} Tk   
+                        </h5>
+                    </div>
+
+                    <div class="panel-body"> 
 						<div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <table id="datatable" class="datatable datatable-editable table table-striped table-bordered">
+                                <table id="datatable" class="display nowrap datatable datatable-editable table table-striped table-bordered">   
                                     
-                                    <thead>  
+                                    <thead>   
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th> 
-                                            <th>phone</th>
-                                            <th>Address</th>
-                                            <th>Image</th>
-                                            <th>Created At</th>
-                                            <th>Tools</th>
+                                            <th>Details</th> 
+                                            <th>Amount</th>  
+                                            <th>Month</th>    
+                                            <th>Date</th>  
+                                            <th>Tools</th> 
                                         </tr>
                                     </thead>
 
                           
                                     <tbody>
 
-										@foreach($suppliers  as $supplier)
+										@foreach($monthlyexpenses  as $expense) 
                                         <tr>
                                             <td>{{ $loop->index +1 }}</td>
-                                            <td>{{ $supplier->name }}</td>
-                                            <td>{{ $supplier->phone }}</td> 
-                                            <td>{{ $supplier->address }}</td>
-                                            <td>
-                                            	<img src="{{ asset($supplier->photo) }}" alt="" width="80"> 
-                                            </td> 
-                                             
-                                             <td>
-                                             	{{ Carbon\Carbon::parse($supplier->created_at)->format('d-m-Y') }}
-                                             </td>   
-
-                                              <td class="actions">
+                                            <td>{{ $expense->details }}</td>
+                                            <td>{{ $expense->amount }} TK</td>
+                                            <td>{{ $expense->month }}</td>
+                                            <td>{{ $expense->date }}</td>
+                                            <td class="actions"> 
                                                
-                                            	{{-- show --}}
-                                            	<a href="{{ route('supplier.show', $supplier->id) }}" class="on-default edit-row">
-                                            		<i class="fa fa-eye"></i>
-                                            	</a>    
-
 												{{-- edit --}}
-                                            	<a href="{{ route('supplier.edit', $supplier->id) }}" class="on-default edit-row">
+                                            	<a href="{{ route('expense.edit', $expense->id) }}" class="on-default edit-row">
                                             		<i class="fa fa-pencil-square"></i>   
-                                            	</a>    
+                                            	</a>     
 
 												{{-- delete	 --}}
-												<form class="supplier" action="{{ route('supplier.destroy', $supplier->id) }}" method="post" style="display: inline;border:0">
+												<form id="expense" action="{{ route('expense.destroy', $expense->id) }}" method="post" style="display: inline;border:0"> 
 													@csrf  
-													@method('DELETE')  
+													@method('DELETE')   
 
 													<button class="on-default remove-row delete" type="submit" style="border: none;background: none">	
-														<i class="fa fa-trash"></i> 
+														<i class="fa fa-trash"></i>  
 													</button>    
 												</form>  
                                             </td> 
@@ -116,10 +119,10 @@
                     // window.location.href = link;
                     confirmed = true;
 
-            		$('.supplier')[0].submit();     
+            		$('#expense')[0].submit();        
 
                 } else {
-                    swal("Safe Data!");   
+                    swal("Safe Data!");    
                 }
             });
         });

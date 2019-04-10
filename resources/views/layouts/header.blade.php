@@ -36,6 +36,8 @@
         <link rel="stylesheet" href="{{ asset('public/css/toastr.min.css') }}">  
         <link href="{{ asset('public/assets/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('public/assets/timepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" /> 
+        <link rel="stylesheet" href="{{ asset('public/css/jquery.dataTables.min.css') }}">   
+        <link rel="stylesheet" href="{{ asset('public/css/buttons.dataTables.min.css') }}">   
         <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">   
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

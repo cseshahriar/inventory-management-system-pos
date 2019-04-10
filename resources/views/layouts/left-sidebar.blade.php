@@ -122,7 +122,9 @@
 
                                     <li><a href="{{ route('expense.create') }}">Add Expense</a></li>
 
-                                    <li><a href="{{ route('expense.index') }}">All Expense</a></li>    
+                                    <li><a href="{{ route('expense.index') }}">All Expense</a></li> 
+
+                                    <li><a href="{{ route('expense.montnly') }}">Monthly Expense</a></li>    
                                 </ul>  
                             </li>   
 
