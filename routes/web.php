@@ -27,12 +27,15 @@ Route::resource('salary', 'AdvanceSalaryController');
 Route::resource('category', 'CategoryController');
 
 // Products Routes   
-Route::resource('product', 'ProductController');   
+Route::resource('product', 'ProductController');
 
 // Products Routes   
 Route::resource('expense', 'ExpenseController');                             
 Route::get('montnly', 'ExpenseController@montnly')->name('expense.montnly');                             
 Route::get('monthly/{month}', 'ExpenseController@single')->name('expense.single');                              
+
+// Products Routes   
+Route::resource('attendance', 'AttendanceController');   
        
 Route::get('/', function () {  
     return view('welcome');
