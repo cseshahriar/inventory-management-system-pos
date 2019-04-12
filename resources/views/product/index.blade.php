@@ -19,7 +19,13 @@
             <!-- Basic example -->
             <div class="col-md-6 offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">All Products</h3></div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">All Products
+                            <span class="pull-right">
+                                <a href="{{ route('product.export') }}" class="btn btn-xs btn-warning">Download XLSX / Export</a>  
+                            </span>
+                        </h3>
+                    </div>
 
                     <div class="panel-body"> 
 						<div class="row">

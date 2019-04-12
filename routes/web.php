@@ -27,7 +27,11 @@ Route::resource('salary', 'AdvanceSalaryController');
 Route::resource('category', 'CategoryController');
 
 // Products Routes   
-Route::resource('product', 'ProductController');
+Route::get('product/export', 'ProductController@export')->name('product.export');  
+Route::get('product/import/create', 'ProductController@productImport')->name('product.import.create');       
+Route::post('product/import', 'ProductController@import')->name('product.import');      
+
+Route::resource('product', 'ProductController');   
 
 // Expense Routes   
 Route::resource('expense', 'ExpenseController');                             

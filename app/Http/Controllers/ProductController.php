@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Image;
+use App\Imports\ProductsImport; 
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;  
+use Illuminate\Support\Facades\File;  
 
 class ProductController extends Controller  
 {
@@ -17,7 +20,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth'); 
     }
 
     /**
@@ -231,4 +234,39 @@ class ProductController extends Controller
             }
         }
     }
+
+
+    public function productImport()
+    {
+        return view('product.import'); 
+    }
+
+    public function import(Request $request) 
+    {
+        $import = Excel::import(new ProductsImport, $request->file('import_file')); 
+        
+         if ( $import ) { 
+            
+            $notification = array(
+                'message' => 'Products Import Successfully',
+                'alert-type' => 'success' 
+            );
+
+            return redirect()->route('product.index')->with($notification);  
+
+        } else {
+            return redirect()->back();      
+        }
+       
+    }
+
+    /**
+     * [export products]
+     * @return [xlsx] [all product exports]
+     */
+    public function export() 
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');  
+    }
+
 }
