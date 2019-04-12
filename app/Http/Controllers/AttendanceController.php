@@ -35,6 +35,18 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function single() 
+    {
+        $month = date('F');
+        $attendences = Attendance::where('month', $month)->get();   
+        return view('attendance.single', compact('attendences'));          
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create() 
     {
         $employees = Employee::all();  
@@ -69,20 +81,12 @@ class AttendanceController extends Controller
                     "att_date" => $request->att_date,
                     "att_year" => $request->att_year,
                     "attendance" => $request->attendance[$id],
-                    'created_at' => date('Y-m-d') 
+                    'month' => date('F'),  
+                    'created_at' => date('Y-m-d'), 
                 ];
             } 
 
             $att = DB::table('attendances')->insert($data);  
-
-           /* foreach ($request->all() as $value) {
-                $attendanc = new Attendance;
-                $attendanc->user_id = $value['user_id'];  
-                $attendanc->att_date = $value['att_date']; 
-                $attendanc->att_year = $value['att_year']; 
-                $attendanc->attendance = $value['attendance'];  
-                $attendanc->save();   
-            } */
 
             if ($att) {   
                 
@@ -112,7 +116,7 @@ class AttendanceController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [ 
-            'attendance' => 'required'
+            'attendance' => 'required' 
         ]);
 
         $attendance = Attendance::find($id);

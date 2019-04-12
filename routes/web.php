@@ -29,15 +29,20 @@ Route::resource('category', 'CategoryController');
 // Products Routes   
 Route::resource('product', 'ProductController');
 
-// Products Routes   
+// Expense Routes   
 Route::resource('expense', 'ExpenseController');                             
 Route::get('montnly', 'ExpenseController@montnly')->name('expense.montnly');                             
 Route::get('monthly/{month}', 'ExpenseController@single')->name('expense.single');                              
 
-// Products Routes   
+// Attendance Routes   
 Route::resource('attendance', 'AttendanceController');   
+Route::get('monthly', 'AttendanceController@single')->name('attendance.single');  
+
+// Settings Routes   
+Route::resource('setting', 'SettingController');    
+    
        
-Route::get('/', function () {  
+Route::get('/', function () {    
     return view('welcome');
 });
 

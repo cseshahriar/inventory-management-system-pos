@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
 {
-    protected $fillable = ['user_id', 'att_date', 'att_year', 'attendance'];
+    protected $fillable = ['user_id', 'att_date', 'att_year', 'attendance', 'month'];
 
     public function employee()
     {
