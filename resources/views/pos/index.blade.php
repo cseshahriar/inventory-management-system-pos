@@ -17,12 +17,6 @@
 
         <div class="row" style="margin-top: 30px">
 
-
-            {{-- invoice form --}}
-            <form action="{{ url('/create-invoice') }}" method="post">
-            
-            @csrf
-
             {{-- categories --}}
             <div class="row" style="margin-bottom: 15px">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -40,16 +34,17 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h4>Customers 
-                            <a href="" class="pull-right btn btn-xs btn-primary waves-effect waves-light" data-toggle="modal" data-target="#customer">Add New</a>
-                        </h4>
+                        
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif 
 
-                        <select name="customer_id" id="customer_id" class="form-control" required>
-                            <option value="" disabled selected>-- Select Customer --</option>
-                            @foreach($customers as $customer)
-                                <option value="{{ $customer->id }}">{{ $customer->name }}</option> 
-                            @endforeach
-                        </select>
                     </div>
                 </div>
 
@@ -80,11 +75,10 @@
                                         <form action="{{ url('/qty-update/'.$item->rowId) }}" method="post">
                                             
                                             @csrf  
-
                                             <input type="number" name="qty" id="qty" style="width:40px" value="{{ $item->qty }}">
                                             <button type="submit" style="margin: 0" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></button> 
                                             
-                                        </form>
+                                        </form> 
                                     </td>
                                     <td>
                                         <input type="text" name="subtotal" id="subtotal" style="width: 65px" value="{{ $item->price * $item->qty }}"> 
@@ -108,15 +102,28 @@
                         <p>Subtotal: {{ Cart::subtotal() }}</p>
                         <p>Tax: {{ Cart::tax() }}%</p>
                         <hr>
-                        <span class="price" style="font-size: 18px;padding:5px">Total: &#2547; {{ Cart::total() }} </span> 
+                        <span class="price" style="font-size: 18px;padding:5px">Total: &#2547; {{ Cart::total() }} </span>  
                     </div>
+
+                     {{-- invoice form --}}
+                    <form action="{{ url('/create-invoice') }}" method="post">
                     
-                    <button type="submit" class="btn btn-lg btn-success">Create Invoice</button>
+                        @csrf
+                         <h4>Customers 
+                            <a href="" class="pull-right btn btn-xs btn-primary waves-effect waves-light" data-toggle="modal" data-target="#customer">Add New</a>
+                        </h4>
 
-                </form> {{-- / invoice form --}} 
+                        <select name="customer_id" id="customer_id" class="form-control">
+                            <option value="" disabled selected>-- Select Customer --</option>
+                            @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->name }}</option> 
+                            @endforeach
+                        </select> 
 
+                        <button type="submit" class="btn btn-lg btn-success">Create Invoice</button>
 
-                
+                    </form> {{-- / invoice form --}}  
+
                 </div> <!-- end Pricing_card -->
             </div> <!-- col-->
 

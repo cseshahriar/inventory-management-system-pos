@@ -48,11 +48,14 @@ Route::resource('setting', 'SettingController');
 // POS Routes   
 Route::resource('pos', 'PosController');     
 
-// POS Routes 
+// POS Routes / carts routes 
 route::post('/add-cart', 'CartController@store');
 route::post('/qty-update/{rowId}', 'CartController@update');
-route::post('/cart-remove/{rowId}', 'CartController@destroy');      
+route::post('/cart-remove/{rowId}', 'CartController@destroy');    
+
+//  Invoice routes 
 route::post('/create-invoice', 'CartController@invoice');      
+route::post('/final-invoice', 'CartController@finalInvoice');          
     
        
 Route::get('/', function () {    

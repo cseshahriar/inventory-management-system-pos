@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Cart;
+use DB; 
+use Cart; 
 use Image;
 use App\Customer;
 use Illuminate\Http\Request;
@@ -110,9 +111,74 @@ class CartController extends Controller
      */
     public function invoice(Request $request)
     {
-        // $carts = Cart::content(); 
+        $this->validate($request, [
+            'customer_id' => 'required|numeric'
+        ], [
+            'customer_id.required' => 'Please select a customer first!'  
+        ]);
+
+        $carts = Cart::content(); 
+        
         $customer_id = $request->customer_id; 
-        dd($customer_id);
+        $customer = Customer::find($customer_id);
+
+        return view('pos.invoice', compact('carts', 'customer')); 
+    }
+
+    public function finalInvoice(Request $request)
+    {
+         $this->validate($request, [
+            'payment_status' => 'required'
+        ], [
+            'payment_status.required' => 'Please your payment first!'  
+        ]);
+
+        // orders 
+        $data = array();
+        $data['customer_id'] = $request->customer_id; 
+        $data['order_date'] = $request->order_date; 
+        $data['order_status'] = $request->order_status; 
+        $data['total_products'] = $request->total_products;   
+        $data['sub_total'] = $request->sub_total; 
+        $data['tax'] = $request->tax; 
+        $data['total'] = $request->total; 
+        $data['payment_status'] = $request->payment_status; 
+        $data['pay'] = $request->pay; 
+        $data['due'] = $request->due;  
+        $order_id = DB::table('orders')->insertGetId($data);   
+
+
+        // cart details 
+        $cartData = array();
+
+        foreach (Cart::content() as $value) {
+            $cartData['order_id'] = $order_id;   
+            $cartData['product_id'] = $value->id; 
+            $cartData['quantity'] = $value->qty; 
+            $cartData['unitcost'] = $value->qty;  
+            $cartData['total'] = $value->total;
+
+            $insert = DB::table('orderdetails')->insert($cartData);    
+        }
+
+        if ($insert) {  
+            
+            $notification = array(
+                'message' => 'Successfully invoice created | Please delevery the products and accept status', 
+                'alert-type' => 'success'  
+            );
+
+            Cart::destroy();
+
+            return redirect()->route('home')->with($notification);   
+
+        } else {
+             $notification = array(
+                'message' => 'Opps! Something went wrong', 
+                'alert-type' => 'error'   
+            );
+            return redirect()->back();       
+        }
     }
 
 }
