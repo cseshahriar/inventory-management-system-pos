@@ -3,7 +3,12 @@
       <!-- LOGO -->
       <div class="topbar-left">
           <div class="text-center">
-              <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>Inventory </span></a>
+              <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>
+                @php 
+                  $setting = DB::table('settings')->first();
+                @endphp
+                {{ $setting->company_name }}
+              </span></a>
           </div>
       </div>
 
@@ -90,7 +95,9 @@
                       </li>
                       <li class="dropdown">
                           <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true">
-                              <img src="{{ asset('public/images/avatar-1.jpg') }}" alt="user-img" class="img-circle"> </a>
+
+                              <img src="{{ asset(Auth::user()->photo ) }}" alt="user-img" class="img-circle"> </a> 
+
                           <ul class="dropdown-menu">
                               <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile</a></li>
 
@@ -116,6 +123,6 @@
                   </ul>
               </div>
               <!--/.nav-collapse -->
-          </div>
+          </div> 
       </div>
   </div>

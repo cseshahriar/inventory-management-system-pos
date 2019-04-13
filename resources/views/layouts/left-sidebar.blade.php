@@ -1,8 +1,9 @@
    <div class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
+
                     <div class="user-details">
                         <div class="pull-left">
-                            <img src="{{ asset('public/images/users/avatar-1.jpg') }}" alt="" class="thumb-md img-circle">
+                            <img src="{{ asset(Auth::user()->photo ) }}" alt="" class="thumb-md img-circle">
                         </div>
                         <div class="user-info">
                             <div class="dropdown">
@@ -11,7 +12,7 @@
                                     <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu"> 
                                     <li>
                                         <a href="javascript:void(0)">
                                             <i class="md md-face-unlock"></i> Profile
@@ -49,6 +50,19 @@
                             <li>
                                 <a href="{{ route('home') }}" class="waves-effect active"><i class="md md-home"></i><span> Dashboard </span></a>
                             </li> 
+
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect">
+                                    <i class="fa fa-tags"></i> 
+                                    <span> POS</span>
+                                    <span class="pull-right"><i class="md md-add"></i></span>
+                                </a> 
+
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('pos.create') }}">Add POS</a></li>
+                                    <li><a href="{{ route('pos.index') }}">All POS</a></li> 
+                                </ul> 
+                            </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect">

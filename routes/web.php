@@ -43,11 +43,14 @@ Route::resource('attendance', 'AttendanceController');
 Route::get('monthly', 'AttendanceController@single')->name('attendance.single');  
 
 // Settings Routes   
-Route::resource('setting', 'SettingController');    
+Route::resource('setting', 'SettingController'); 
+
+// POS Routes   
+Route::resource('pos', 'PosController');     
     
        
 Route::get('/', function () {    
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
