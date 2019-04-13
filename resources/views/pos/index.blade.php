@@ -16,12 +16,19 @@
 
 
         <div class="row" style="margin-top: 30px">
+
+
+            {{-- invoice form --}}
+            <form action="{{ url('/create-invoice') }}" method="post">
+            
+            @csrf
+
             {{-- categories --}}
             <div class="row" style="margin-bottom: 15px">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="portfolioFilter">
                         @foreach(App\Category::all() as $category)
-                            <a href="#" data-filter="#" class="current">{{ $category->cat_name }}</a>
+                            <a href="#" data-filter="#" @if($loop->index == 0) {{ 'class=current' }} @endif>{{ $category->cat_name }}</a>   
                         @endforeach
                     </div>
                 </div>    
@@ -29,7 +36,7 @@
             {{-- / categories --}}
 
             <!-- Basic example -->
-            <div class="col-md-5">
+            <div class="col-md-6">
 
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -37,10 +44,10 @@
                             <a href="" class="pull-right btn btn-xs btn-primary waves-effect waves-light" data-toggle="modal" data-target="#customer">Add New</a>
                         </h4>
 
-                        <select name="" id="" class="form-control">
+                        <select name="customer_id" id="customer_id" class="form-control" required>
                             <option value="" disabled selected>-- Select Customer --</option>
                             @foreach($customers as $customer)
-                                <option value="{{ $customer->name }}">{{ $customer->name }}</option> 
+                                <option value="{{ $customer->id }}">{{ $customer->name }}</option> 
                             @endforeach
                         </select>
                     </div>
@@ -52,52 +59,69 @@
                     <ul class="price-features" style="border: 1px solid #ddd">
             
                         <table class="table">
+
                             <thead class="bg-primary">
                                 <th style="color: #fff !important">Name</th>
-                                <th style="color: #fff !important">Price</th>
-                                <th style="color: #fff !important">Qty</th>
-                                <th style="color: #fff !important">Subtotal</th>
-                                <th style="color: #fff !important">Tools</th>
+                                <th style="color: #fff !important">Unite Price</th>
+                                <th style="color: #fff !important">Quantity</th> 
+                                <th style="color: #fff !important">Subtotal</th> 
+                                <th style="color: #fff !important">Tools</th> 
                             </thead>
-                            <tbody>
+
+                            <tbody> 
+                                @foreach(Cart::content() as $item)
                                 <tr>
-                                    <td>BMW</td>
-                                    <td>&#2547; 10000</td> 
+                                    <td>{{ $item->name}}</td>
+                                    <td>&#2547; {{ $item->price }}</td> 
                                     <td>
-                                        <input type="text" name="qty" id="qty" style="width: 35px" value="1">
+                                        
+                                        {{-- qty update --}} 
+
+                                        <form action="{{ url('/qty-update/'.$item->rowId) }}" method="post">
+                                            
+                                            @csrf  
+
+                                            <input type="number" name="qty" id="qty" style="width:40px" value="{{ $item->qty }}">
+                                            <button type="submit" style="margin: 0" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></button> 
+                                            
+                                        </form>
                                     </td>
                                     <td>
-                                        <input type="text" name="subtotal" id="subtotal" style="width: 65px" value="">
+                                        <input type="text" name="subtotal" id="subtotal" style="width: 65px" value="{{ $item->price * $item->qty }}"> 
                                     </td>
                                     <td class="actions">
                                         {{-- delete  --}}
-                                        <form class="salary" action="" method="post" style="display: inline;border:0"> 
-                                            @csrf  
-                                            @method('DELETE')  
-
-                                            <button class="on-default remove-row delete" type="submit" style="border: none;background: none;margin: 0">   
+                                        <form action="{{ url('/cart-remove/'.$item->rowId) }}" method="post" style="display: inline;border:0">  
+                                            @csrf
+                                            <button class="on-default remove-row" type="submit" style="border: none;background: none;margin: 0">   
                                                 <i class="fa fa-trash"></i> 
                                             </button>    
                                         </form>  
                                     </td> 
                                 </tr>
+                                @endforeach 
                             </tbody> 
                         </table>
                     </ul>
                     <div class="pricing-footer bg-primary" style="padding:15px 0px;">
-                        <p>Quantity: 2</p>
-                        <p>Vat: 15%</p>
+                        <p>Quantity: {{ Cart::count() }}</p>
+                        <p>Subtotal: {{ Cart::subtotal() }}</p>
+                        <p>Tax: {{ Cart::tax() }}%</p>
                         <hr>
-                        <span class="price" style="font-size: 18px;padding:5px">Total: &#2547; 4000 </span> 
+                        <span class="price" style="font-size: 18px;padding:5px">Total: &#2547; {{ Cart::total() }} </span> 
                     </div>
                     
-                    <button type="submit" name="submit" class="btn btn-lg btn-success">Next</button>
+                    <button type="submit" class="btn btn-lg btn-success">Create Invoice</button>
+
+                </form> {{-- / invoice form --}} 
+
+
                 
                 </div> <!-- end Pricing_card -->
             </div> <!-- col-->
 
             <!-- Basic example -->
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <table id="datatable" class="datatable datatable-editable table table-striped table-bordered"> 
                                     
                     <thead>  
@@ -107,6 +131,7 @@
                             <th>Name</th> 
                             <th>Product Code</th>  
                             <th>Category</th>  
+                            <th>Tools</th>  
                         </tr>
                     </thead>
 
@@ -114,14 +139,25 @@
 
                         @foreach($products  as $product)
                         <tr>
+                            <form action="{{ url('/add-cart')}}" method="post">
+                                
+                                @csrf 
+                                <input type="hidden" name="id" value="{{ $product->id }}"> 
+                                <input type="hidden" name="name" value="{{ $product->product_name }}"> 
+                                <input type="hidden" name="qty" value="1"> 
+                                <input type="hidden" name="price" value="{{ $product->selling_price }}">   
+
                             <td>{{ $loop->index +1 }}</td>
                             <td>
-                                <a href="" style="font-size: 20px"><i class="fa fa-plus-square"></i></a>
                                 <img src="{{ asset($product->product_image) }}" alt="" width="60">
                             </td>
-                            <td>{{ $product->product_name }}</td>
+                            <td>{{ $product->product_name }}</td> 
                             <td>{{ $product->product_code }}</td>
                             <td>{{ $product->category->cat_name }}</td> 
+                            <td>
+                                <button type="submit" class="btn btn-xs btn-primary">Add to Cart</button>
+                            </td>
+                           </form>
                         </tr>
                         @endforeach  
                     
@@ -142,7 +178,16 @@
             </div> 
             
             <form role="form" method="post" action="{{ route('customer.store') }}" enctype="multipart/form-data">  
-            <div class="modal-body">
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach 
+                    </ul>
+                </div>
+            @endif
+            <div class="modal-body">    
 
                 <div class="row"> 
                     <div class="col-md-6">  
@@ -229,34 +274,7 @@
 </div><!-- /.modal -->
 @endsection 
 
-@section('extjs')
- <script> 
-        $(document).on('click', '.delete', function(e) { 
-        	var confirmed = false;
-
-            e.preventDefault();
-            // var link = $(this).attr("href");
-            
-            swal({
-                title : 'Are you sure want to delete?',
-                text : "Onec Delete, This will be permanently delete!",
-                icon : "warning",
-                buttons: true,
-                dangerMode : true
-            }).then((willDelete) => { 
-                if (willDelete) {
-                    // window.location.href = link;
-                    confirmed = true;
-
-            		$('#category')[0].submit();        
-
-                } else {
-                    swal("Safe Data!");   
-                }
-            });
-        });
-   </script>
-
+@section('extjs')  
    <script> 
     function readURL(input) {
         if (input.files && input.files[0]) { 

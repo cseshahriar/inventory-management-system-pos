@@ -96,7 +96,7 @@ class CustomerController extends Controller
                 'alert-type' => 'success' 
             );
 
-            return redirect()->route('customer.index')->with($notification);   
+            return redirect()->back()->with($notification);    
 
         } else {
             return redirect()->back();     

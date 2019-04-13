@@ -47,10 +47,16 @@ Route::resource('setting', 'SettingController');
 
 // POS Routes   
 Route::resource('pos', 'PosController');     
+
+// POS Routes 
+route::post('/add-cart', 'CartController@store');
+route::post('/qty-update/{rowId}', 'CartController@update');
+route::post('/cart-remove/{rowId}', 'CartController@destroy');      
+route::post('/create-invoice', 'CartController@invoice');      
     
        
 Route::get('/', function () {    
-    return view('auth.login');
+    return view('auth.login'); 
 });
 
 Auth::routes();

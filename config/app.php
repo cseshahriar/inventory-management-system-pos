@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\ImageManagerStatic::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 
