@@ -57,7 +57,11 @@ route::post('/cart-remove/{rowId}', 'CartController@destroy');
 route::post('/create-invoice', 'CartController@invoice');      
 route::post('/final-invoice', 'CartController@finalInvoice');          
     
-       
+// Pending Orders
+route::get('/pending/order', 'OrderController@index')->name('pending.order'); 
+route::get('/order/show/{id}', 'OrderController@show')->name('order.show');  
+route::get('/pos-done/{id}', 'OrderController@done')->name('pos.done');      
+
 Route::get('/', function () {    
     return view('auth.login'); 
 });

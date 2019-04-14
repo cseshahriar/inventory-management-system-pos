@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB; 
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -14,28 +15,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $orders = DB::table('orders')
+        ->join('customers', 'orders.customer_id', 'customers.id')
+        ->select('customers.name', 'orders.*')
+        ->where('order_status', 'Pending')
+        ->get();  
+        return view('order.index', compact('orders'));       
     }
 
     /**
@@ -44,42 +29,39 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
-    {
-        //
+    public function show($id)
+    { 
+        $order = DB::table('orders')
+        ->join('customers', 'orders.customer_id', 'customers.id')
+        ->select('customers.*', 'orders.*', 'orders.id as oid')   
+        ->where('orders.id', $id)
+        ->first(); 
+
+        $orderDetails  = DB::table('orderdetails')
+        ->join('products', 'orderdetails.product_id', 'products.id')
+        ->select('orderdetails.*', 'products.product_name', 'products.product_code') 
+        ->where('order_id', $id)->get();       
+
+        return view('order.show', compact('order', 'orderDetails'));  
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
+    public function done($id)
     {
-        //
-    }
+        $approve = DB::table('orders')->where('id', $id)->update(['order_status' => 'Success']);  
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
+        if ( $approve ) {  
+            
+            $notification = array(
+                'message' => 'Successfully Order Confirmed ! And All Products Delevered',
+                'alert-type' => 'success'  
+            );
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+            return redirect()->route('pending.order')->with($notification);  
+
+        } else {
+            return redirect()->back();      
+        }
+
     }
 }

@@ -145,7 +145,8 @@ class CartController extends Controller
         $data['payment_status'] = $request->payment_status; 
         $data['pay'] = $request->pay; 
         $data['due'] = $request->due;  
-        $order_id = DB::table('orders')->insertGetId($data);   
+        $data['created_at'] = date('Y-m-d'); 
+        $order_id = DB::table('orders')->insertGetId($data);    
 
 
         // cart details 
@@ -157,6 +158,7 @@ class CartController extends Controller
             $cartData['quantity'] = $value->qty; 
             $cartData['unitcost'] = $value->qty;  
             $cartData['total'] = $value->total;
+            $cartData['created_at'] = date('Y-m-d');
 
             $insert = DB::table('orderdetails')->insert($cartData);    
         }
