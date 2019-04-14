@@ -62,6 +62,9 @@ route::get('/pending/order', 'OrderController@index')->name('pending.order');
 route::get('/order/show/{id}', 'OrderController@show')->name('order.show');  
 route::get('/pos-done/{id}', 'OrderController@done')->name('pos.done');      
 
+route::get('/order/success', 'OrderController@success')->name('success.order');     
+route::get('/order/success-show/{id}', 'OrderController@successShow')->name('order.success.show');         
+
 Route::get('/', function () {    
     return view('auth.login'); 
 });

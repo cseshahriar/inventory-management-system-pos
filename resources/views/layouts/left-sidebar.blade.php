@@ -149,7 +149,10 @@
                                     <i class="fa fa-tachometer" aria-hidden="true"></i>
                                     <span> Orders</span><span class="pull-right"><i class="md md-add"></i></span></a>  
                                 <ul class="list-unstyled"> 
-                                    <li><a href="{{ route('pending.order') }}">Pending Orders</a></li>    
+
+                                    <li><a href="{{ route('pending.order') }}">All Pending Orders</a></li>   
+
+                                    <li><a href="{{ route('success.order') }}">All Success Orders</a></li>    
                                 </ul>  
                             </li> 
                             

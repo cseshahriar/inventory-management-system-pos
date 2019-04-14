@@ -52,8 +52,8 @@
                                 </div>
                                 <div class="pull-right m-t-30">
                                     <p><strong>Order Date: </strong> {{ date('l jS \of F Y') }}</p>
-                                    <p class="m-t-10"><strong>Order Status: </strong> <span class="label label-pink">Pending</span></p>
-                                    <p class="m-t-10"><strong>Order ID: </strong> #{{ $order->id }}</p> 
+                                    <p class="m-t-10"><strong>Order Status: </strong> <span class="label label-success">Success</span></p>
+                                    <p class="m-t-10"><strong>Order ID: </strong> #{{ $order->id}}</p>  
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                                 <a href="#" class="btn btn-inverse waves-effect waves-light" onclick="window.print()"> 
                                     <i class="fa fa-print"></i> 
                                 </a>
-                                <a href="{{ URL::to('/pos-done/'.$order->oid) }}" class="btn btn-primary waves-effect waves-light">Done</a>  
+                                <a href="{{ route('success.order') }}" class="btn btn-primary waves-effect waves-light">Back</a>   
                             </div>
                         </div>
                     </div>

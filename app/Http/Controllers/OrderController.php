@@ -19,8 +19,32 @@ class OrderController extends Controller
         ->join('customers', 'orders.customer_id', 'customers.id')
         ->select('customers.name', 'orders.*')
         ->where('order_status', 'Pending')
+        ->orWhere('order_status', 'pending')   
         ->get();  
         return view('order.index', compact('orders'));       
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function successShow($id) 
+    { 
+        $order = DB::table('orders')
+        ->join('customers', 'orders.customer_id', 'customers.id')
+        ->select('customers.*', 'orders.*', 'orders.id as oid')   
+        ->where('orders.id', $id)
+        ->first(); 
+
+        $orderDetails  = DB::table('orderdetails')
+        ->join('products', 'orderdetails.product_id', 'products.id')
+        ->select('orderdetails.*', 'products.product_name', 'products.product_code') 
+        ->where('order_id', $id)->get();       
+
+        return view('order.success-show', compact('order', 'orderDetails'));    
+
     }
 
     /**
@@ -63,5 +87,16 @@ class OrderController extends Controller
             return redirect()->back();      
         }
 
+    }
+
+    public function success()
+    {
+        $orders = DB::table('orders')
+        ->join('customers', 'orders.customer_id', 'customers.id')
+        ->select('customers.name', 'orders.*')
+        ->where('order_status', 'Success')
+        ->orWhere('order_status', 'success') 
+        ->get();  
+        return view('order.success', compact('orders'));  
     }
 }
