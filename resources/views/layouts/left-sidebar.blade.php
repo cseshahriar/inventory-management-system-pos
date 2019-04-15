@@ -41,7 +41,7 @@
                                 </ul>
                             </div>
                             
-                            <p class="text-muted m-0">Administrator</p> 
+                            <p class="text-muted m-0">{{ Auth::user()->type }}</p> 
                         </div>
                     </div>
                     <!--- Divider -->
@@ -50,6 +50,7 @@
                             <li>
                                 <a href="{{ route('home') }}" class="waves-effect active"><i class="md md-home"></i><span> Dashboard </span></a>
                             </li> 
+
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect">
@@ -61,6 +62,19 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('pos.create') }}">Add POS</a></li>
                                     <li><a href="{{ route('pos.index') }}">All POS</a></li> 
+                                </ul> 
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect">
+                                    <i class="fa fa-users"></i> 
+                                    <span> Users</span>
+                                    <span class="pull-right"><i class="md md-add"></i></span>
+                                </a> 
+
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('user.create') }}">Add User</a></li>
+                                    <li><a href="{{ route('user.index') }}">All Users</a></li> 
                                 </ul> 
                             </li>
 
