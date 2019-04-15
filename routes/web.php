@@ -6,7 +6,10 @@
 |--------------------------------------------------------------------------
 */
 
-// Employees Routes
+// Users Routes
+Route::get('user/profile', 'UsersController@profile')->name('user.profile');   
+Route::get('user/setting', 'UsersController@setting')->name('user.setting');     
+Route::post('user/setting/update', 'UsersController@settingUpdate')->name('user.setting.update');     
 Route::resource('user', 'UsersController');  
 
 // Employees Routes

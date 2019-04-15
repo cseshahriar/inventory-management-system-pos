@@ -3,7 +3,7 @@
       <!-- LOGO -->
       <div class="topbar-left">
           <div class="text-center">
-              <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>
+              <a href="{{ route('home') }}" class="logo"><i class="md md-terrain"></i> <span>
                 @php 
                   $setting = DB::table('settings')->first();
                 @endphp
@@ -99,11 +99,9 @@
                               <img src="{{ asset(Auth::user()->photo ) }}" alt="user-img" class="img-circle"> </a> 
 
                           <ul class="dropdown-menu">
-                              <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile</a></li>
+                              <li><a href="{{ route('user.profile') }}"><i class="md md-face-unlock"></i> Profile</a></li>
 
-                              <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-
-                              <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>  
+                              <li><a href="{{ route('user.setting') }}"><i class="md md-settings"></i> Settings</a></li> 
 
                               <li>
                 
