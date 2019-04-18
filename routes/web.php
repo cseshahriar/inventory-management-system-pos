@@ -69,8 +69,17 @@ route::get('/order/success-show/{id}', 'OrderController@successShow')->name('ord
 
 Route::get('/', function () {    
     return view('auth.login'); 
-});
+}); 
 
-Auth::routes();
+// Authentication Routes...
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Password Reset Routes...
+$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset'); 
 
 Route::get('/home', 'HomeController@index')->name('home');  

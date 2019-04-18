@@ -34,7 +34,7 @@
                                 </ul>
                             </div>
                             
-                            <p class="text-muted m-0">{{ Auth::user()->type }}</p> 
+                            <p class="text-muted m-0">{{ ucfirst(Auth::user()->type) }}</p> 
                         </div>
                     </div>
                     <!--- Divider -->
