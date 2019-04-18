@@ -97,10 +97,10 @@
                         <hr>
                         <div class="hidden-print"> 
                             <div class="pull-right">
-                                <a href="#" class="btn btn-inverse waves-effect waves-light" onclick="window.print()"> 
+                                <a href="{{ route('invoice.pdf', $customer->id) }}" class="btn btn-inverse waves-effect waves-light">     
                                     <i class="fa fa-print"></i> 
                                 </a>
-                                <a href="#" data-toggle="modal" data-target="#invoice" class="btn btn-primary waves-effect waves-light">Submit</a>
+                                <a href="#" data-toggle="modal" data-target="#invoice" class="btn btn-primary waves-effect waves-light">Submit</a>  
                             </div>
                         </div>
                     </div>

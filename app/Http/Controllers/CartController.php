@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF; 
 use DB; 
 use Cart; 
 use Image;
@@ -182,5 +183,14 @@ class CartController extends Controller
             return redirect()->back();       
         }
     }
+
+    // invoice 
+    public function invoicePdf($id)
+    {
+        $customer = Customer::find($id);
+        $pdf = PDF::loadView('pos.pdf', $customer);          
+        return $pdf->stream('invoice.pdf');    
+    }
+
 
 }

@@ -56,7 +56,8 @@ route::post('/qty-update/{rowId}', 'CartController@update');
 route::post('/cart-remove/{rowId}', 'CartController@destroy');    
 
 //  Invoice routes 
-route::post('/create-invoice', 'CartController@invoice');      
+route::post('/create-invoice', 'CartController@invoice');
+route::get('/invoice/pdf/{id}', 'CartController@invoicePdf')->name('invoice.pdf'); 
 route::post('/final-invoice', 'CartController@finalInvoice');          
     
 // Pending Orders
@@ -71,15 +72,22 @@ Route::get('/', function () {
     return view('auth.login'); 
 }); 
 
+// Auth::routes();
 // Authentication Routes...
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
 
 // Password Reset Routes...
-$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-$this->post('password/reset', 'Auth\ResetPasswordController@reset'); 
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update'); 
 
+// Email Verification Routes...
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice'); 
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 Route::get('/home', 'HomeController@index')->name('home');  
