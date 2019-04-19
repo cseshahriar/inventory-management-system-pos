@@ -69,15 +69,6 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
                             </div>
 
-                            <div class="form-group">
-                                <label for="type">Type</label>
-                                <select name="type" id="type" class="form-control">
-                                    <option value="" disabled> Choose User Type</option>
-                                    <option value="admin" {{ Auth::user()->type == 'admin' ? 'selected' : ''}}>Admin</option>
-                                    <option value="superadmin" {{ Auth::user()->type == 'superadmin' ? 'selected' : ''}}>Super Admin</option>  
-                                </select>   
-                            </div>
-
                             <button type="submit" class="btn btn-purple waves-effect waves-light">Update User</button>     
                         </form>
                     </div><!-- panel-body -->

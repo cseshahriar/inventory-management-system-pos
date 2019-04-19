@@ -24,6 +24,7 @@
                     <div class="panel-body">
 						<div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                @if(Auth::user()->type === 'superadmin')
                                 <table id="datatable" class="datatable datatable-editable table table-striped table-bordered">
                                     
                                     <thead>   
@@ -79,7 +80,10 @@
                                     
                                     </tbody>
                                 </table>
-
+                        @else
+                            <h3 class="text-danger">Access Denied!</h3>
+                            <p class="alert alert-danger">You don't currently have permission to access this action.</p>
+                        @endif
                             </div>
                         </div>
                     </div><!-- panel-body -->

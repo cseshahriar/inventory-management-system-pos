@@ -228,16 +228,14 @@ class UsersController extends Controller
             'name' => 'required|string',
             'email' => 'required|max:255|unique:users,email,'.$id,   
             'password' => 'nullable|string|min:8', 
-            'photo' => 'nullable|mimes:jpeg,jpg,png,gif|max:2048',    
-            'type' => 'nullable|string',   
+            'photo' => 'nullable|mimes:jpeg,jpg,png,gif|max:2048',      
         ]);
 
 
         $user = User::find($id); 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);  
-        $user->type = $request->type;  
+        $user->password = Hash::make($request->password);   
 
         // image upload 
         if ($request->hasFile('photo')) { 

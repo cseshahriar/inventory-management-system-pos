@@ -33,7 +33,8 @@
                                 </ul>
                             </div>
                         @endif
-
+                        
+                    @if(Auth::user()->type === 'superadmin')
                         <form role="form" method="post" action="{{ route('user.store') }}" enctype="multipart/form-data"> 
 
                         	@csrf
@@ -80,6 +81,10 @@
 
                             <button type="submit" class="btn btn-purple waves-effect waves-light">Add User</button>    
                         </form>
+                    @else
+                        <h3 class="text-danger">Access Denied!</h3>
+                        <p class="alert alert-danger">You don't currently have permission to access this action.</p>
+                    @endif
                     </div><!-- panel-body -->
                 </div> <!-- panel -->
             </div> <!-- col-->
